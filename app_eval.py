@@ -35,14 +35,14 @@ def compute_diff(baselines, system):
 
 
 def set_metric(container, baselines, system=None):
-    col_name_list = ["Rouge-1", "Rouge-2", "Rouge-L", "BLEU", "BertScore"]
-    cols = container.columns(5)
+    col_name_list = ["Rouge-1", "Rouge-2", "Rouge-L", "BLEU1", "BLEU2", "BLEU3", "BLEU4", "BertScore"]
+    cols = container.columns(8)
     if system != None:
         diff_list = compute_diff(baselines, system)
-        for i in range(5):
+        for i in range(8):
             cols[i].metric(col_name_list[i], str(round(system[i],4)), str(diff_list[i]) + "%")
     else:
-        for i in range(5):
+        for i in range(8):
             cols[i].metric(col_name_list[i], str(round(baselines[i],4)))
 
 
